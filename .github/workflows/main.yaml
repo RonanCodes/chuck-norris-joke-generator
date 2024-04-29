@@ -22,8 +22,21 @@ jobs:
       - name: Test
         run: npm run ci:test
 
+      - name: Bump version and push tag
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          npm version patch -m "Bump version to %s [skip ci]"
+          git push origin --tags
+
       - name: Build
         run: npm run build:prod
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist/chuck-norris-joke-generator/browser
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
