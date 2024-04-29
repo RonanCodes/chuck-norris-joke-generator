@@ -26,5 +26,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: dist/chuck-norris-joke-generator # The folder the action should deploy.
+          folder: dist/chuck-norris-joke-generator/browser # The folder the action should deploy.
           token: ${{ secrets.GH_TOKEN }} # The GitHub token.
