@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ul {
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    li {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    li:nth-child(even) {
+      color: orange;
+    }
+
+    li:nth-child(odd) {
+      color: lightblue;
+    }
+  }
+}

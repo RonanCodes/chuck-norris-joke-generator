@@ -7,6 +7,6 @@ import { JokesComponent } from '../jokes/jokes.component';
   imports: [JokesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {}
