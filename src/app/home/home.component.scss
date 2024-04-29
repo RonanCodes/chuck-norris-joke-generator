@@ -15,4 +15,12 @@
 mat-toolbar {
   margin-bottom: 15px;
   padding: 0px 0px 0px 5px;
+  // height: 800px;
+}
+
+.sticky-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 50px;
 }
