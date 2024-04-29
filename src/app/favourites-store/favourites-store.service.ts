@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
 
 @Injectable({
@@ -38,5 +38,17 @@ export class FavouritesStoreService {
       'favourites',
       JSON.stringify(this._favourites$.value)
     );
+  }
+
+  public toggleFavourite(joke: string): void {
+    if (this.isFavourite(joke)) {
+      this.removeFavourite(joke);
+    } else {
+      this.addFavourite(joke);
+    }
+  }
+
+  private isFavourite(joke: string): boolean {
+    return this._favourites$.value.includes(joke);
   }
 }

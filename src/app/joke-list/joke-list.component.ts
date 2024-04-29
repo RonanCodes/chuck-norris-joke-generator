@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { FavouritesStoreService } from '../favourites-store/favourites-store.service';
 
 @Component({
   selector: 'cnjg-joke-list',
@@ -13,5 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class JokeListComponent {
   @Input() jokes: string[] = [];
-  // @Output() jokeClicked = new EventEmitter<string>();
+
+  constructor(public favouritesStoreService: FavouritesStoreService) {}
 }

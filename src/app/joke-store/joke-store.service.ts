@@ -18,19 +18,20 @@ export class JokeStoreService {
     this._isNewJokeIntervalRunning$.asObservable();
 
   constructor(
-    private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService
-  ) {
-    this.newJokeIntervalId = this.startNewJokeTimer();
-  }
+    private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   public toggleInterval(): void {
-    if (this.newJokeIntervalId) {
+    if (this._isNewJokeIntervalRunning$.value) {
       this.cancelNewJokeTimer();
       this._isNewJokeIntervalRunning$.next(false);
     } else {
       this.newJokeIntervalId = this.startNewJokeTimer();
       this._isNewJokeIntervalRunning$.next(true);
     }
+
+    this.persistIntervalStateToLocalStorage();
   }
 
   public initStore(): void {
@@ -44,6 +45,8 @@ export class JokeStoreService {
       // Add the joke to the list of jokes:
       this._jokes$.next([...this._jokes$.value, joke])
     );
+
+    this.loadIntervalStateFromLocalStorage();
   }
 
   public cancelNewJokeTimer(): void {
@@ -63,5 +66,25 @@ export class JokeStoreService {
         this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)]);
       });
     }, 5000);
+  }
+
+  private persistIntervalStateToLocalStorage(): void {
+    this.localStorageService.saveToLocalStorage(
+      'intervalState',
+      JSON.stringify(this._isNewJokeIntervalRunning$.value)
+    );
+  }
+
+  private loadIntervalStateFromLocalStorage(): void {
+    const intervalState =
+      this.localStorageService.getFromLocalStorage('intervalState');
+
+    if (intervalState) {
+      this._isNewJokeIntervalRunning$.next(JSON.parse(intervalState));
+    }
+
+    if (this._isNewJokeIntervalRunning$.value) {
+      this.newJokeIntervalId = this.startNewJokeTimer();
+    }
   }
 }
