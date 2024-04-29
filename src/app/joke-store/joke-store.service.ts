@@ -48,13 +48,11 @@ export class JokeStoreService {
   public cancelNewJokeTimer(): void {
     window.clearInterval(this.newJokeIntervalId);
     this.newJokeIntervalId = undefined;
-    // this.isNewJokeIntervalRunning = false;
     this._isNewJokeIntervalRunning$.next(false);
   }
 
   // TODO: Move this to interval-running-store:
   public startNewJokeTimer(): number {
-    // this.isNewJokeIntervalRunning = true;
     this._isNewJokeIntervalRunning$.next(true);
 
     // Every 5 seconds, add a new joke to the list of jokes:
