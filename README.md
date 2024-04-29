@@ -1,5 +1,10 @@
 # ChuckNorrisJokeGenerator
 
+Live GitHub Pages CD Deployement:  
+https://ronancodes.github.io/chuck-norris-joke-generator/
+
+# Default
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
 ## Development server
