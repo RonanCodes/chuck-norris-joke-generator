@@ -13,7 +13,7 @@ export class JokeStoreService {
 
   private newJokeIntervalId: number | undefined;
 
-  private _isNewJokeIntervalRunning$ = new BehaviorSubject<boolean>(false);
+  private _isNewJokeIntervalRunning$ = new BehaviorSubject<boolean>(true);
 
   public isNewJokeIntervalRunning$ =
     this._isNewJokeIntervalRunning$.asObservable();
