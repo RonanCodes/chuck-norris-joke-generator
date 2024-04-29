@@ -10,6 +10,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [JokesComponent, MatIconModule, MatButtonModule, MatToolbarModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {}
