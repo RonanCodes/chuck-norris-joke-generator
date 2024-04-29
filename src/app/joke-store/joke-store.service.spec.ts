@@ -7,8 +7,17 @@ describe('JokeStoreService', () => {
   let service: JokeStoreService;
 
   beforeEach(() => {
+    const chuckNorrisJokeGeneratorService = jasmine.createSpyObj(
+      'ChuckNorrisJokeGeneratorService',
+      ['getJoke']
+    );
     TestBed.configureTestingModule({
-      providers: [{ provide: ChuckNorrisJokeGeneratorService, useValue: {} }],
+      providers: [
+        {
+          provide: ChuckNorrisJokeGeneratorService,
+          useValue: chuckNorrisJokeGeneratorService,
+        },
+      ],
     });
     service = TestBed.inject(JokeStoreService);
   });

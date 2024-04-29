@@ -10,12 +10,10 @@ describe('JokesComponent', () => {
   let fixture: ComponentFixture<JokesComponent>;
 
   beforeEach(async () => {
-    const jokesStoreService = jasmine.createSpyObj('JokeStoreService', [
-      'getJokes',
-    ]);
-    jokesStoreService.getJokes.and.returnValue(
-      of(['Chuck Norris can divide by zero.'])
-    );
+    const jokesStoreService = {
+      ...jasmine.createSpyObj('JokeStoreService', ['']),
+      jokes$: of(['Chuck Norris can divide by zero.']),
+    };
 
     await TestBed.configureTestingModule({
       imports: [JokesComponent, CommonModule],

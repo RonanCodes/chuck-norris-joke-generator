@@ -16,6 +16,12 @@ export class JokeStoreService {
   public isNewJokeIntervalRunning$ =
     this._isNewJokeIntervalRunning$.asObservable();
 
+  constructor(
+    private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService
+  ) {
+    this.newJokeIntervalId = this.startNewJokeTimer();
+  }
+
   public toggleInterval(): void {
     if (this.newJokeIntervalId) {
       this.cancelNewJokeTimer();
@@ -24,12 +30,6 @@ export class JokeStoreService {
       this.newJokeIntervalId = this.startNewJokeTimer();
       this._isNewJokeIntervalRunning$.next(true);
     }
-  }
-
-  constructor(
-    private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService
-  ) {
-    this.newJokeIntervalId = this.startNewJokeTimer();
   }
 
   public initStore(): void {
