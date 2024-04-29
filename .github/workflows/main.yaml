@@ -24,6 +24,8 @@ jobs:
 
       - name: Automated Version Bump
         uses: phips28/gh-action-bump-version@v11.0.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Build
         run: npm run build:prod
