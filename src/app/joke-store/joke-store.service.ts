@@ -9,9 +9,28 @@ export class JokeStoreService {
   private _jokes$ = new BehaviorSubject<string[]>([]);
   public jokes$ = this._jokes$.asObservable();
 
+  private newJokeIntervalId: number | undefined;
+
+  private _isNewJokeIntervalRunning$ = new BehaviorSubject<boolean>(false);
+
+  public isNewJokeIntervalRunning$ =
+    this._isNewJokeIntervalRunning$.asObservable();
+
+  public toggleInterval(): void {
+    if (this.newJokeIntervalId) {
+      this.cancelNewJokeTimer();
+      this._isNewJokeIntervalRunning$.next(false);
+    } else {
+      this.newJokeIntervalId = this.startNewJokeTimer();
+      this._isNewJokeIntervalRunning$.next(true);
+    }
+  }
+
   constructor(
     private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService
-  ) {}
+  ) {
+    this.newJokeIntervalId = this.startNewJokeTimer();
+  }
 
   public initStore(): void {
     const jokeRequests: Observable<string>[] = Array(10).fill(
@@ -24,5 +43,26 @@ export class JokeStoreService {
       // Add the joke to the list of jokes:
       this._jokes$.next([...this._jokes$.value, joke])
     );
+  }
+
+  public cancelNewJokeTimer(): void {
+    window.clearInterval(this.newJokeIntervalId);
+    this.newJokeIntervalId = undefined;
+    // this.isNewJokeIntervalRunning = false;
+    this._isNewJokeIntervalRunning$.next(false);
+  }
+
+  // TODO: Move this to interval-running-store:
+  public startNewJokeTimer(): number {
+    // this.isNewJokeIntervalRunning = true;
+    this._isNewJokeIntervalRunning$.next(true);
+
+    // Every 5 seconds, add a new joke to the list of jokes:
+    return window.setInterval(() => {
+      this.chuckNorrisJokeGeneratorService.getJoke().subscribe((joke) => {
+        console.log({ joke });
+        this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)]);
+      });
+    }, 5000);
   }
 }

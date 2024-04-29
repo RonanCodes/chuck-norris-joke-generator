@@ -4,3 +4,8 @@ export interface ChuckNorrisJoke {
   url: string;
   value: string;
 }
+
+export enum HourGlass {
+  Empty = 'hourglass_empty',
+  Full = 'hourglass_full',
+}

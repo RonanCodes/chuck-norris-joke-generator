@@ -3,13 +3,25 @@ import { JokesComponent } from '../jokes/jokes.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { JokeStoreService } from '../joke-store/joke-store.service';
+import { HourGlass } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'cnjg-home',
   standalone: true,
-  imports: [JokesComponent, MatIconModule, MatButtonModule, MatToolbarModule],
+  imports: [
+    JokesComponent,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    CommonModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent {
+  public hourGlass = HourGlass;
+  constructor(public jokeStoreService: JokeStoreService) {}
+}

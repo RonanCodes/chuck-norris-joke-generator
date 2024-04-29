@@ -1,10 +1,22 @@
 <mat-toolbar>
   <span class="header">Chuck Norris Jokes</span>
   <span class="spacer"></span>
-  <button mat-icon-button>
+  <button mat-icon-button title="Home">
     <mat-icon>home</mat-icon>
   </button>
-  <button mat-icon-button>
+
+  <button
+    mat-icon-button
+    (click)="jokeStoreService.toggleInterval()"
+    title="Toggle Interval"
+  >
+    <mat-icon>{{
+      (jokeStoreService.isNewJokeIntervalRunning$ | async)
+        ? hourGlass.Full
+        : hourGlass.Empty
+    }}</mat-icon>
+  </button>
+  <button mat-icon-button title="Favourites">
     <mat-icon>favorite</mat-icon>
   </button>
 </mat-toolbar>
