@@ -2,5 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 25px;
+  // padding: 25px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.header {
+  padding-left: 10px;
+}
+
+mat-toolbar {
+  margin-bottom: 20px;
 }
