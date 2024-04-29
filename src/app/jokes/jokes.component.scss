@@ -2,9 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 
   ul {
     width: 90%;
+    height: 100%;
+    justify-content: space-evenly;
 
     display: flex;
     flex-direction: column;
