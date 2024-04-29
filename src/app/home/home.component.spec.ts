@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
 import { JokeStoreService } from '../joke-store/joke-store.service';
+import { RouterModule } from '@angular/router';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -29,6 +30,7 @@ describe('HomeComponent', () => {
         MatButtonModule,
         MatToolbarModule,
         CommonModule,
+        RouterModule.forRoot([]),
       ],
       providers: [
         {

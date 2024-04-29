@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { MockComponent } from 'ng-mocks';
+import { HomeComponent } from './home/home.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, MockComponent(HomeComponent)],
     }).compileComponents();
   });
 
