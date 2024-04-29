@@ -27,7 +27,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           npm version patch -m "Bump version to %s [skip ci]"
-          git push origin --tags
+          git push https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} --tags
 
       - name: Build
         run: npm run build:prod
