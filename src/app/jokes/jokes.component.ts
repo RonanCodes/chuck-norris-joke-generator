@@ -15,8 +15,6 @@ export class JokesComponent {
 
   constructor(private jokeStoreService: JokeStoreService) {
     // TODO: Look into using async pipe?
-    this.jokeStoreService.getJokes().subscribe((jokes) => {
-      this.jokes = jokes;
-    });
+    this.jokeStoreService.getJokes().subscribe((jokes) => (this.jokes = jokes));
   }
 }
