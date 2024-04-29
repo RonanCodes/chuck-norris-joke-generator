@@ -1,25 +1,32 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
+import { Joke } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavouritesStoreService {
-  private _favourites$ = new BehaviorSubject<string[]>([]);
+  // This should just be a filtered list on top of the joke store.
+  private _favourites$ = new BehaviorSubject<Joke[]>([]);
 
   public favourites$ = this._favourites$.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {}
 
-  public addFavourite(joke: string): void {
+  public addFavourite(joke: Joke): void {
+    joke.isFavourite = true;
     this._favourites$.next([...this._favourites$.value, joke]);
     this.persistToLocalStorage();
   }
 
-  public removeFavourite(joke: string): void {
+  public removeFavourite(joke: Joke): void {
+    joke.isFavourite = false;
+
     this._favourites$.next(
-      this._favourites$.value.filter((favourite) => favourite !== joke)
+      this._favourites$.value.filter(
+        (favourite) => favourite.value !== joke.value
+      )
     );
     this.persistToLocalStorage();
   }
@@ -40,7 +47,7 @@ export class FavouritesStoreService {
     );
   }
 
-  public toggleFavourite(joke: string): void {
+  public toggleFavourite(joke: Joke): void {
     if (this.isFavourite(joke)) {
       this.removeFavourite(joke);
     } else {
@@ -48,7 +55,7 @@ export class FavouritesStoreService {
     }
   }
 
-  private isFavourite(joke: string): boolean {
+  private isFavourite(joke: Joke): boolean {
     return this._favourites$.value.includes(joke);
   }
 }

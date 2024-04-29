@@ -5,8 +5,10 @@
       title="Favourites"
       (click)="favouritesStoreService.toggleFavourite(joke)"
     >
-      <mat-icon>favorite</mat-icon>
+      <mat-icon>{{
+        joke.isFavourite ? "favorite" : "favorite_border"
+      }}</mat-icon>
     </button>
-    {{ joke }}
+    {{ joke.value }}
   </li>
 </ul>

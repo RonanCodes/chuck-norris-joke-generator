@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { ChuckNorrisJokeGeneratorService } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.service';
 import { BehaviorSubject, Observable, concat, tap } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
+import { Joke } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JokeStoreService {
-  private _jokes$ = new BehaviorSubject<string[]>([]);
+  private _jokes$ = new BehaviorSubject<Joke[]>([]);
   public jokes$ = this._jokes$.asObservable();
 
   private newJokeIntervalId: number | undefined;
@@ -35,7 +36,7 @@ export class JokeStoreService {
   }
 
   public initStore(): void {
-    const jokeRequests: Observable<string>[] = Array(10).fill(
+    const jokeRequests: Observable<Joke>[] = Array(10).fill(
       this.chuckNorrisJokeGeneratorService.getJoke()
     );
 
@@ -61,10 +62,11 @@ export class JokeStoreService {
 
     // Every 5 seconds, add a new joke to the list of jokes:
     return window.setInterval(() => {
-      this.chuckNorrisJokeGeneratorService.getJoke().subscribe((joke) => {
-        console.log({ joke });
-        this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)]);
-      });
+      this.chuckNorrisJokeGeneratorService
+        .getJoke()
+        .subscribe((joke) =>
+          this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)])
+        );
     }, 5000);
   }
 

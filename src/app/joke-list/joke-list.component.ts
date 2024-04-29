@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FavouritesStoreService } from '../favourites-store/favourites-store.service';
+import { Joke } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.model';
 
 @Component({
   selector: 'cnjg-joke-list',
@@ -13,7 +14,7 @@ import { FavouritesStoreService } from '../favourites-store/favourites-store.ser
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JokeListComponent {
-  @Input() jokes: string[] = [];
+  @Input() jokes: Joke[] = [];
 
   constructor(public favouritesStoreService: FavouritesStoreService) {}
 }
