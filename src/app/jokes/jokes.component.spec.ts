@@ -13,7 +13,9 @@ describe('JokesComponent', () => {
   beforeEach(async () => {
     const jokesStoreService = {
       ...jasmine.createSpyObj('JokeStoreService', ['']),
-      jokes$: of(['Chuck Norris can divide by zero.']),
+      jokes$: of([
+        { value: 'Chuck Norris can divide by zero.', isFavourite: false },
+      ]),
     };
 
     await TestBed.configureTestingModule({
