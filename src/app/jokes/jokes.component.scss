@@ -1,35 +1,3 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: 100%;
-
-  ul {
-    width: 90%;
-    height: 100%;
-    justify-content: space-evenly;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    // Safari only:
-    padding-inline-start: 0px;
-
-    li {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-    li:nth-child(even) {
-      color: orange;
-    }
-
-    li:nth-child(odd) {
-      color: lightblue;
-    }
-  }
-}
-
-li {
-  font-size: large;
 }

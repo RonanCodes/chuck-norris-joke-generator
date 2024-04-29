@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let joke of jokes">
+    <button mat-icon-button title="Favourites" routerLink="/favourites">
+      <mat-icon>favorite_border</mat-icon>
+      <!-- <mat-icon>favorite_border</mat-icon> -->
+    </button>
+    {{ joke }}
+  </li>
+</ul>

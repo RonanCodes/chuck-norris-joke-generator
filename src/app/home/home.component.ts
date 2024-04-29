@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { JokeStoreService } from '../joke-store/joke-store.service';
 import { HourGlass } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.model';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'cnjg-home',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatToolbarModule,
     CommonModule,
+    RouterModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

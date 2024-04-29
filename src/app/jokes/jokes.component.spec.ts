@@ -4,6 +4,7 @@ import { JokesComponent } from './jokes.component';
 import { JokeStoreService } from '../joke-store/joke-store.service';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { JokeListComponent } from '../joke-list/joke-list.component';
 
 describe('JokesComponent', () => {
   let component: JokesComponent;
@@ -16,7 +17,7 @@ describe('JokesComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [JokesComponent, CommonModule],
+      imports: [JokesComponent, CommonModule, JokeListComponent],
       providers: [
         {
           provide: JokeStoreService,
@@ -34,6 +35,7 @@ describe('JokesComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  // TODO: Move this to the joke-list component test.
   it('should render title', () => {
     const fixture = TestBed.createComponent(JokesComponent);
     fixture.detectChanges();

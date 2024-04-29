@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ChuckNorrisJokeGeneratorService } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.service';
-import { BehaviorSubject, Observable, concat } from 'rxjs';
+import { BehaviorSubject, Observable, concat, tap } from 'rxjs';
+import { LocalStorageService } from '../local-storage.service';
 
 @Injectable({
   providedIn: 'root',

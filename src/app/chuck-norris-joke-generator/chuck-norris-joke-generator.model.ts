@@ -9,3 +9,8 @@ export enum HourGlass {
   Empty = 'hourglass_empty',
   Full = 'hourglass_full',
 }
+
+export interface Joke {
+  value: string;
+  isFavourite: boolean;
+}

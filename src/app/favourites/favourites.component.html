@@ -1,1 +1,3 @@
-<p>favourites works!</p>
+<cnjg-joke-list
+  [jokes]="(favouritesStoreService.favourites$ | async) || []"
+></cnjg-joke-list>

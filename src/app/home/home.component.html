@@ -1,8 +1,12 @@
 <mat-toolbar>
   <span class="header">Chuck Norris Jokes</span>
   <span class="spacer"></span>
-  <button mat-icon-button title="Home">
+  <button mat-icon-button title="Jokes" routerLink="/jokes">
     <mat-icon>home</mat-icon>
+  </button>
+
+  <button mat-icon-button title="Favourites" routerLink="/favourites">
+    <mat-icon>favorite</mat-icon>
   </button>
 
   <button
@@ -16,9 +20,6 @@
         : hourGlass.Empty
     }}</mat-icon>
   </button>
-  <button mat-icon-button title="Favourites">
-    <mat-icon>favorite</mat-icon>
-  </button>
 </mat-toolbar>
 
-<cnjg-jokes></cnjg-jokes>
+<router-outlet />
