@@ -23,14 +23,11 @@ jobs:
         run: npm run ci:test
 
       - name: Bump version and push tag
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           npm version patch -m "Bump version to %s [skip ci]"
-          git remote set-url origin https://x-access-token:$GH_TOKEN@github.com/${{ github.repository }}
-          git push origin --tags
+          git push https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} --tags
 
       - name: Build
         run: npm run build:prod
