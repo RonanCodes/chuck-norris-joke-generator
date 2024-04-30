@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
-import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
+import { BehaviorSubject, Subject, of } from 'rxjs';
 import { JokeStoreService } from '../../shared/data/store/joke-store/joke-store.service';
 import { RouterModule } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -94,7 +94,7 @@ describe('HomeComponent', () => {
         fixture.detectChanges();
 
         // Assert
-        let hourGlassIcon = fixture.debugElement.nativeElement.querySelector(
+        const hourGlassIcon = fixture.debugElement.nativeElement.querySelector(
           '#toggle-interval-button mat-icon',
         ).textContent;
 

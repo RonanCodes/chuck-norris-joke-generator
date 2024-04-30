@@ -1,17 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ChuckNorrisJokeGeneratorService } from './chuck-norris-joke-generator.service';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { ChuckNorrisJoke } from './chuck-norris-joke-generator.model';
 
 describe('ChuckNorrisJokeGeneratorService', () => {
   let service: ChuckNorrisJokeGeneratorService;
 
-  let httpClient: jasmine.SpyObj<HttpClient>;
-
   beforeEach(() => {
-    let httpClient = jasmine.createSpyObj('HttpClient', ['get']);
+    const httpClient = jasmine.createSpyObj('HttpClient', ['get']);
     httpClient.get.and.returnValue(
       of({ value: 'God prays to Chuck Norris' } as ChuckNorrisJoke),
     );
