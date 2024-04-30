@@ -51,17 +51,7 @@ import { concat, delay, of, switchMap, tap } from 'rxjs';
 export class HomeComponent {
   public hourGlass = HourGlass;
 
-  constructor(public jokeStoreService: JokeStoreService) {
-    // this.jokeStoreService.jokes$.subscribe((joke) => {
-    //   console.log(joke);
-    //   this.isSpin$2.next('spin');
-    //   setTimeout(() => {
-    //     this.isSpin$2.next('stop');
-    //   }, 500);
-    // });
-  }
-
-  // public isSpin$2 = new BehaviorSubject('stop');
+  constructor(public jokeStoreService: JokeStoreService) {}
 
   public isSpin$ = this.jokeStoreService.jokes$.pipe(
     switchMap(() => concat(of('spin'), of('stop').pipe(delay(500)))),

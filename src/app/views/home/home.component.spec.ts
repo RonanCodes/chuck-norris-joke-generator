@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
 import { JokeStoreService } from '../../shared/data/store/joke-store/joke-store.service';
 import { RouterModule } from '@angular/router';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -20,6 +21,7 @@ describe('HomeComponent', () => {
     const jokesStoreService = {
       ...jasmine.createSpyObj('JokeStoreService', ['toggleInterval']),
       isNewJokeIntervalRunning$: of(true),
+      jokes$: of([]),
     };
 
     await TestBed.configureTestingModule({
@@ -31,6 +33,7 @@ describe('HomeComponent', () => {
         MatToolbarModule,
         CommonModule,
         RouterModule.forRoot([]),
+        NoopAnimationsModule,
       ],
       providers: [
         {
