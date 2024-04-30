@@ -8,6 +8,7 @@ import { Joke } from '../../rest/chuck-norris-joke-generator/chuck-norris-joke-g
   providedIn: 'root',
 })
 export class JokeStoreService {
+  private intervalMs = 5000;
   private _jokes$ = new BehaviorSubject<Joke[]>([]);
   public jokes$ = this._jokes$.asObservable();
 
@@ -67,7 +68,7 @@ export class JokeStoreService {
         .subscribe((joke) =>
           this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)])
         );
-    }, 5000);
+    }, this.intervalMs);
   }
 
   private persistIntervalStateToLocalStorage(): void {

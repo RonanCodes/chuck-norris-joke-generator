@@ -21,6 +21,7 @@
     (click)="jokeStoreService.toggleInterval()"
     title="Toggle Interval"
     color="warn"
+    [@spinAnimation]="isSpin$ | async"
   >
     <mat-icon>{{
       (jokeStoreService.isNewJokeIntervalRunning$ | async)
