@@ -7,12 +7,15 @@ import { LocalStorageService } from '../../util/local-storage/local-storage.serv
 describe('IntervalRunningStoreService', () => {
   let service: IntervalRunningStoreService;
 
+  let jokeStoreService: jasmine.SpyObj<JokeStoreService>;
+  let localStorageService: jasmine.SpyObj<LocalStorageService>;
+
   beforeEach(() => {
-    const jokeStoreService = jasmine.createSpyObj('JokeStoreService', [
+    jokeStoreService = jasmine.createSpyObj('JokeStoreService', [
       'triggerNewJoke',
     ]);
 
-    const localStorageService = jasmine.createSpyObj('LocalStorageService', [
+    localStorageService = jasmine.createSpyObj('LocalStorageService', [
       'saveToLocalStorage',
       'getFromLocalStorage',
     ]);
@@ -34,5 +37,57 @@ describe('IntervalRunningStoreService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  describe('#initStore()', () => {
+    it('should emit the local stoarge pref for if the interval should run', (done) => {
+      // Arrange
+      localStorageService.getFromLocalStorage.and.returnValue('false');
+
+      // Act
+      service.initStore();
+
+      // Assert
+      service.isNewJokeIntervalRunning$.subscribe(
+        (isNewJokeIntervalRunning) => {
+          expect(isNewJokeIntervalRunning).toBeFalse();
+          done();
+        }
+      );
+    });
+  });
+
+  describe('#toggleInterval()', () => {
+    [
+      {
+        description: 'should stop the interval',
+        localStorageValue: 'true',
+        expectedValue: false,
+      },
+      {
+        description: 'should start a new interval joke timer',
+        localStorageValue: 'false',
+        expectedValue: true,
+      },
+    ].forEach((testCase) => {
+      it(testCase.description, (done) => {
+        // Arrange
+        localStorageService.getFromLocalStorage.and.returnValue(
+          testCase.localStorageValue
+        );
+        service.initStore();
+
+        // Act
+        service.toggleInterval();
+
+        // Assert
+        service.isNewJokeIntervalRunning$.subscribe(
+          (isNewJokeIntervalRunning) => {
+            expect(isNewJokeIntervalRunning).toBe(testCase.expectedValue);
+            done();
+          }
+        );
+      });
+    });
   });
 });

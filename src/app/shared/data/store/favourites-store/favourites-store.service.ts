@@ -14,6 +14,16 @@ export class FavouritesStoreService {
 
   constructor(private localStorageService: LocalStorageService) {}
 
+  public initStore(): void {
+    const favourites = this.localStorageService.getFromLocalStorage(
+      localStorageKey.favourites
+    );
+
+    if (favourites) {
+      this._favourites$.next(JSON.parse(favourites));
+    }
+  }
+
   public addFavourite(joke: Joke): void {
     joke.isFavourite = true;
     // new jokes are added to the top of the list:
@@ -30,16 +40,6 @@ export class FavouritesStoreService {
       )
     );
     this.persistToLocalStorage();
-  }
-
-  public initStore(): void {
-    const favourites = this.localStorageService.getFromLocalStorage(
-      localStorageKey.favourites
-    );
-
-    if (favourites) {
-      this._favourites$.next(JSON.parse(favourites));
-    }
   }
 
   public toggleFavourite(joke: Joke): void {
