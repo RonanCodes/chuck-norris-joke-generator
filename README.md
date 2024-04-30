@@ -6,7 +6,7 @@ https://ronancodes.github.io/chuck-norris-joke-generator/
 ## Future enhancements
 
 [] Use custom pipes and directives
-[] Add in more unit tests (using TestBed)
+[x] Add in more unit tests (using TestBed)
 [] Have the alternating colors swap whenever a new joke comes in
 [x] Use breakpoints to make it look different on desktop
 [] Add in a refresh button to the toolbar (icons should move into a burger menu when the width is too short)
