@@ -14,7 +14,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { concat, delay, of, switchMap, tap } from 'rxjs';
+import { concat, delay, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'cnjg-home',
@@ -53,8 +53,10 @@ export class HomeComponent {
 
   constructor(public jokeStoreService: JokeStoreService) {}
 
+  /**
+   * Triggers the spin animation every time there is a new joke.
+   */
   public isSpin$ = this.jokeStoreService.jokes$.pipe(
-    switchMap(() => concat(of('spin'), of('stop').pipe(delay(500)))),
-    tap((value) => console.log(value))
+    switchMap(() => concat(of('spin'), of('stop').pipe(delay(500))))
   );
 }
