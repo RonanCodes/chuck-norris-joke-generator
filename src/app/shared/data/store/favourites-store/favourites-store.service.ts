@@ -58,6 +58,8 @@ export class FavouritesStoreService {
   }
 
   private isFavourite(joke: Joke): boolean {
-    return this._favourites$.value.includes(joke);
+    return !!this._favourites$.value.find(
+      (favourite) => favourite.value === joke.value
+    );
   }
 }

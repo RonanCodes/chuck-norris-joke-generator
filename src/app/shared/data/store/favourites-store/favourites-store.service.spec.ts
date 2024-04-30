@@ -14,11 +14,11 @@ describe('FavouritesStoreService', () => {
   let newJoke: Joke;
 
   beforeEach(() => {
-    originalJoke = { value: 'God prays to Chuck Norris', isFavourite: false };
+    originalJoke = { value: 'God prays to Chuck Norris', isFavourite: true };
 
     newJoke = {
       value: 'Chuck Norris can lick his elbows.',
-      isFavourite: true,
+      isFavourite: false,
     };
     favouritesFromLocalStorage = JSON.stringify([originalJoke]);
 
@@ -40,6 +40,7 @@ describe('FavouritesStoreService', () => {
       ],
     });
     service = TestBed.inject(FavouritesStoreService);
+    service.initStore();
   });
 
   it('should be created', () => {
@@ -56,9 +57,6 @@ describe('FavouritesStoreService', () => {
 
   describe('#initStore()', () => {
     it('should return an empty array', () => {
-      // Act
-      service.initStore();
-
       // Assert
       let favourites: Joke[] = [];
       service.favourites$.subscribe(
@@ -69,10 +67,7 @@ describe('FavouritesStoreService', () => {
   });
 
   describe('#addFavourite()', () => {
-    it('should return an empty array', (done) => {
-      // Arrange
-      service.initStore();
-
+    it('should add the favourite', (done) => {
       // Act
       service.addFavourite(newJoke);
 
@@ -90,19 +85,42 @@ describe('FavouritesStoreService', () => {
     });
   });
 
-  // describe('#removeFavourite()', () => {
-  //   it('should return an empty array', () => {
-  //     // Arrange
-  //     // Act
-  //     // Assert
-  //   });
-  // });
+  describe('#removeFavourite()', () => {
+    it('should remove the favourite', (done) => {
+      // Act
+      service.removeFavourite(originalJoke);
 
-  // describe('#toggleFavourite()', () => {
-  //   it('should return an empty array', () => {
-  //     // Arrange
-  //     // Act
-  //     // Assert
-  //   });
-  // });
+      service.favourites$.subscribe((favourites) => {
+        expect(favourites.length).toBe(0);
+        done();
+      });
+
+      // Assert
+      expect(originalJoke.isFavourite).toBe(false);
+      expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
+        localStorageKey.favourites,
+        JSON.stringify([])
+      );
+    });
+  });
+
+  describe('#toggleFavourite()', () => {
+    it('should update the #isFavourite property', (done) => {
+      // Act
+      service.toggleFavourite(originalJoke);
+
+      service.favourites$.subscribe((favourites) => {
+        console.log(favourites);
+        expect(favourites.length).toBe(0);
+        done();
+      });
+
+      // Assert
+      expect(originalJoke.isFavourite).toBe(false);
+      expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
+        localStorageKey.favourites,
+        JSON.stringify([])
+      );
+    });
+  });
 });
