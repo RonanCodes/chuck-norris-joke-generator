@@ -52,7 +52,7 @@ describe('IntervalRunningStoreService', () => {
         (isNewJokeIntervalRunning) => {
           expect(isNewJokeIntervalRunning).toBeFalse();
           done();
-        }
+        },
       );
     });
   });
@@ -73,7 +73,7 @@ describe('IntervalRunningStoreService', () => {
       it(testCase.description, (done) => {
         // Arrange
         localStorageService.getFromLocalStorage.and.returnValue(
-          testCase.localStorageValue
+          testCase.localStorageValue,
         );
         service.initStore();
 
@@ -85,7 +85,7 @@ describe('IntervalRunningStoreService', () => {
           (isNewJokeIntervalRunning) => {
             expect(isNewJokeIntervalRunning).toBe(testCase.expectedValue);
             done();
-          }
+          },
         );
       });
     });

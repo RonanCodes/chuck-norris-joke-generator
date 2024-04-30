@@ -28,7 +28,7 @@ describe('FavouritesStoreService', () => {
     ]);
 
     localStorageService.getFromLocalStorage.and.returnValue(
-      favouritesFromLocalStorage
+      favouritesFromLocalStorage,
     );
 
     TestBed.configureTestingModule({
@@ -60,7 +60,7 @@ describe('FavouritesStoreService', () => {
       // Assert
       let favourites: Joke[] = [];
       service.favourites$.subscribe(
-        (favouritesEvent) => (favourites = favouritesEvent)
+        (favouritesEvent) => (favourites = favouritesEvent),
       );
       expect(favourites[0]?.value).toBe('God prays to Chuck Norris');
     });
@@ -80,7 +80,7 @@ describe('FavouritesStoreService', () => {
       expect(newJoke.isFavourite).toBe(true);
       expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
         localStorageKey.favourites,
-        JSON.stringify([newJoke, originalJoke])
+        JSON.stringify([newJoke, originalJoke]),
       );
     });
   });
@@ -99,7 +99,7 @@ describe('FavouritesStoreService', () => {
       expect(originalJoke.isFavourite).toBe(false);
       expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
         localStorageKey.favourites,
-        JSON.stringify([])
+        JSON.stringify([]),
       );
     });
   });
@@ -118,7 +118,7 @@ describe('FavouritesStoreService', () => {
       expect(originalJoke.isFavourite).toBe(false);
       expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
         localStorageKey.favourites,
-        JSON.stringify([])
+        JSON.stringify([]),
       );
     });
 
@@ -135,7 +135,7 @@ describe('FavouritesStoreService', () => {
       expect(originalJoke.isFavourite).toBe(true);
       expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
         localStorageKey.favourites,
-        JSON.stringify([newJoke, originalJoke])
+        JSON.stringify([newJoke, originalJoke]),
       );
     });
   });

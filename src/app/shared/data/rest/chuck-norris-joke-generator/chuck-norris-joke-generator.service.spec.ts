@@ -13,7 +13,7 @@ describe('ChuckNorrisJokeGeneratorService', () => {
   beforeEach(() => {
     let httpClient = jasmine.createSpyObj('HttpClient', ['get']);
     httpClient.get.and.returnValue(
-      of({ value: 'God prays to Chuck Norris' } as ChuckNorrisJoke)
+      of({ value: 'God prays to Chuck Norris' } as ChuckNorrisJoke),
     );
 
     TestBed.configureTestingModule({

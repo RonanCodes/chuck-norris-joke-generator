@@ -1,26 +1,25 @@
-@if(favouritesStoreService.favourites$ | async; as favourites){
-<ul>
-  @for (joke of jokes; track joke){
-  <li>
-    <button
-      mat-icon-button
-      title="Favourites"
-      (click)="favouritesStoreService.toggleFavourite(joke)"
-      [disabled]="favourites.length >= 10 && joke.isFavourite === false"
-    >
-      <mat-icon>{{
-        joke.isFavourite
-          ? favouriteIcon.Favourite
-          : favouriteIcon.FavouriteBorder
-      }}</mat-icon>
-    </button>
-    {{ joke.value }}
-  </li>
-
-  } @empty {
-  <h1>🤡 Loading jokes...</h1>
-  }
-</ul>
+@if (favouritesStoreService.favourites$ | async; as favourites) {
+  <ul>
+    @for (joke of jokes; track joke) {
+      <li>
+        <button
+          mat-icon-button
+          title="Favourites"
+          (click)="favouritesStoreService.toggleFavourite(joke)"
+          [disabled]="favourites.length >= 10 && joke.isFavourite === false"
+        >
+          <mat-icon>{{
+            joke.isFavourite
+              ? favouriteIcon.Favourite
+              : favouriteIcon.FavouriteBorder
+          }}</mat-icon>
+        </button>
+        {{ joke.value }}
+      </li>
+    } @empty {
+      <h1>🤡 Loading jokes...</h1>
+    }
+  </ul>
 } @else {
-<h1>❌ Error loading favourites</h1>
+  <h1>❌ Error loading favourites</h1>
 }

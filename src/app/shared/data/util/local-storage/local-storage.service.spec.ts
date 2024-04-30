@@ -29,7 +29,7 @@ describe('LocalStorageService', () => {
       // Act
       service.saveToLocalStorage(
         localStorageKey.favourites,
-        stringifiedFavourites
+        stringifiedFavourites,
       );
 
       // Assert

@@ -11,19 +11,19 @@ export class JokeStoreService {
   public jokes$ = this._jokes$.asObservable();
 
   constructor(
-    private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService
+    private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService,
   ) {}
 
   public initStore(): void {
     const jokeRequests: Observable<Joke>[] = Array(10).fill(
-      this.chuckNorrisJokeGeneratorService.getJoke()
+      this.chuckNorrisJokeGeneratorService.getJoke(),
     );
 
     // Concat kicks off each request one after the other.
     // This must be done to ensure jokes are unique.
     concat(...jokeRequests).subscribe((joke) =>
       // Add the joke to the list of jokes:
-      this._jokes$.next([...this._jokes$.value, joke])
+      this._jokes$.next([...this._jokes$.value, joke]),
     );
   }
 
@@ -31,7 +31,7 @@ export class JokeStoreService {
     this.chuckNorrisJokeGeneratorService
       .getJoke()
       .subscribe((joke) =>
-        this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)])
+        this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)]),
       );
   }
 }

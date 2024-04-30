@@ -11,7 +11,9 @@
     "ci:test": "ng test --browsers ChromeHeadless --watch=false",
     "coverage": "ng test --code-coverage --watch=false && http-server -c-1 -o -p 9875 ./coverage",
     "lint": "ng lint",
-    "prettier:write:all": "prettier --write \"src/**/*.ts\""
+    "prettier:ts": "prettier --write \"src/**/*.ts\"",
+    "prettier:html": "prettier --write \"src/**/*.html\"",
+    "prettier": "npm run prettier:ts && npm run prettier:html"
   },
   "private": true,
   "dependencies": {

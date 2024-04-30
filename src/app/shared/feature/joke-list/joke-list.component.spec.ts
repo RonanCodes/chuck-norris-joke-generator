@@ -30,7 +30,7 @@ describe('JokeListComponent', () => {
       // Assert
       const nativeElement = fixture.nativeElement as HTMLElement;
       expect(nativeElement.querySelector('li')?.textContent).toContain(
-        'Chuck Norris can divide by zero.'
+        'Chuck Norris can divide by zero.',
       );
     });
   });

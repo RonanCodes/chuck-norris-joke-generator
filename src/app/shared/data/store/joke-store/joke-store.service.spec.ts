@@ -13,7 +13,7 @@ describe('JokeStoreService', () => {
   beforeEach(() => {
     chuckNorrisJokeGeneratorService = jasmine.createSpyObj(
       'ChuckNorrisJokeGeneratorService',
-      ['getJoke']
+      ['getJoke'],
     );
     TestBed.configureTestingModule({
       providers: [
@@ -38,7 +38,7 @@ describe('JokeStoreService', () => {
         isFavourite: false,
       };
       chuckNorrisJokeGeneratorService.getJoke.and.returnValues(
-        ...Array(12).fill(of(joke))
+        ...Array(12).fill(of(joke)),
       );
 
       // Act

@@ -19,7 +19,7 @@ export class IntervalRunningStoreService {
 
   constructor(
     private jokeStoreService: JokeStoreService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
   ) {}
 
   public initStore(): void {
@@ -56,13 +56,13 @@ export class IntervalRunningStoreService {
   private persistIntervalStateToLocalStorage(): void {
     this.localStorageService.saveToLocalStorage(
       localStorageKey.interval,
-      JSON.stringify(this._isNewJokeIntervalRunning$.value)
+      JSON.stringify(this._isNewJokeIntervalRunning$.value),
     );
   }
 
   private loadIntervalStateFromLocalStorage(): void {
     const intervalState = this.localStorageService.getFromLocalStorage(
-      localStorageKey.interval
+      localStorageKey.interval,
     );
 
     if (intervalState) {

@@ -75,7 +75,7 @@ describe('HomeComponent', () => {
     it('should call #intervalRunningStoreService.toggleInterval()', () => {
       (
         fixture.debugElement.nativeElement.querySelector(
-          '#toggle-interval-button'
+          '#toggle-interval-button',
         ) as HTMLButtonElement
       ).dispatchEvent(new Event('click'));
 
@@ -95,7 +95,7 @@ describe('HomeComponent', () => {
 
         // Assert
         let hourGlassIcon = fixture.debugElement.nativeElement.querySelector(
-          '#toggle-interval-button mat-icon'
+          '#toggle-interval-button mat-icon',
         ).textContent;
 
         expect(hourGlassIcon).toContain(testCase.expectedIcon);

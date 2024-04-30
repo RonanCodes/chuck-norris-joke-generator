@@ -16,7 +16,7 @@ export class FavouritesStoreService {
 
   public initStore(): void {
     const favourites = this.localStorageService.getFromLocalStorage(
-      localStorageKey.favourites
+      localStorageKey.favourites,
     );
 
     if (favourites) {
@@ -37,8 +37,8 @@ export class FavouritesStoreService {
 
     this._favourites$.next(
       this._favourites$.value.filter(
-        (favourite) => favourite.value !== joke.value
-      )
+        (favourite) => favourite.value !== joke.value,
+      ),
     );
     this.persistToLocalStorage();
   }
@@ -54,13 +54,13 @@ export class FavouritesStoreService {
   private persistToLocalStorage(): void {
     this.localStorageService.saveToLocalStorage(
       localStorageKey.favourites,
-      JSON.stringify(this._favourites$.value)
+      JSON.stringify(this._favourites$.value),
     );
   }
 
   private isFavourite(joke: Joke): boolean {
     return !!this._favourites$.value.find(
-      (favourite) => favourite.value === joke.value
+      (favourite) => favourite.value === joke.value,
     );
   }
 }

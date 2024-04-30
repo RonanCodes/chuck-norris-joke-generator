@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
       useFactory: (
         jokeStoreService: JokeStoreService,
         favouritesStoreService: FavouritesStoreService,
-        intervalRunningStoreService: IntervalRunningStoreService
+        intervalRunningStoreService: IntervalRunningStoreService,
       ) => {
         jokeStoreService.initStore();
         favouritesStoreService.initStore();

@@ -37,13 +37,13 @@ import { HourGlass } from '../../shared/model/material-icon.model';
         'spin',
         style({
           transform: 'rotate(360deg)',
-        })
+        }),
       ),
       state(
         'stop',
         style({
           transform: 'rotate(0)',
-        })
+        }),
       ),
       transition('spin <=> stop', [animate('0.5s')]),
     ]),
@@ -54,13 +54,13 @@ export class HomeComponent {
 
   constructor(
     public jokeStoreService: JokeStoreService,
-    public intervalRunningStoreService: IntervalRunningStoreService
+    public intervalRunningStoreService: IntervalRunningStoreService,
   ) {}
 
   /**
    * Triggers the spin animation every time there is a new joke.
    */
   public isSpin$ = this.jokeStoreService.jokes$.pipe(
-    switchMap(() => concat(of('spin'), of('stop').pipe(delay(500))))
+    switchMap(() => concat(of('spin'), of('stop').pipe(delay(500)))),
   );
 }
