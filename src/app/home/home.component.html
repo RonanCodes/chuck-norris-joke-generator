@@ -1,13 +1,18 @@
-<mat-toolbar class="sticky-toolbar">
+<mat-toolbar class="sticky-toolbar" color="primary">
   <img src="favicon.ico" alt="App Favicon" height="35" />
 
   <span class="header">Chuck Norris Jokes</span>
   <span class="spacer"></span>
-  <button mat-icon-button title="Jokes" routerLink="/jokes">
+  <button color="accent" mat-icon-button title="Jokes" routerLink="/jokes">
     <mat-icon>home</mat-icon>
   </button>
 
-  <button mat-icon-button title="Favourites" routerLink="/favourites">
+  <button
+    color="accent"
+    mat-icon-button
+    title="Favourites"
+    routerLink="/favourites"
+  >
     <mat-icon>favorite</mat-icon>
   </button>
 
@@ -15,6 +20,7 @@
     mat-icon-button
     (click)="jokeStoreService.toggleInterval()"
     title="Toggle Interval"
+    color="warn"
   >
     <mat-icon>{{
       (jokeStoreService.isNewJokeIntervalRunning$ | async)
