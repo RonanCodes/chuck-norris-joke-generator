@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { JokeStoreService } from './joke-store.service';
 import { ChuckNorrisJokeGeneratorService } from '../../rest/chuck-norris-joke-generator/chuck-norris-joke-generator.service';
 import { Joke } from './joke-store.model';
-import { Subject, of } from 'rxjs';
+import { of } from 'rxjs';
 
 describe('JokeStoreService', () => {
   let service: JokeStoreService;
