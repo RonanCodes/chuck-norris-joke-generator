@@ -27,7 +27,8 @@ export class FavouritesStoreService {
   public addFavourite(joke: Joke): void {
     joke.isFavourite = true;
     // new jokes are added to the top of the list:
-    this._favourites$.next([...this._favourites$.value, joke]);
+    this._favourites$.next([joke, ...this._favourites$.value.splice(0, 9)]);
+
     this.persistToLocalStorage();
   }
 

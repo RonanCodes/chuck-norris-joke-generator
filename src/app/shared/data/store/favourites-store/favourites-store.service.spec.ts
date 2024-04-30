@@ -72,7 +72,7 @@ describe('FavouritesStoreService', () => {
       service.addFavourite(newJoke);
 
       service.favourites$.subscribe((favourites) => {
-        expect(favourites[1].value).toBe(newJoke.value);
+        expect(favourites[0].value).toBe(newJoke.value);
         done();
       });
 
@@ -80,7 +80,7 @@ describe('FavouritesStoreService', () => {
       expect(newJoke.isFavourite).toBe(true);
       expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
         localStorageKey.favourites,
-        JSON.stringify([originalJoke, newJoke])
+        JSON.stringify([newJoke, originalJoke])
       );
     });
   });
@@ -135,7 +135,7 @@ describe('FavouritesStoreService', () => {
       expect(originalJoke.isFavourite).toBe(true);
       expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
         localStorageKey.favourites,
-        JSON.stringify([originalJoke, newJoke])
+        JSON.stringify([newJoke, originalJoke])
       );
     });
   });

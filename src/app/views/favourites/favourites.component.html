@@ -1,3 +1,8 @@
-<cnjg-joke-list
-  [jokes]="(favouritesStoreService.favourites$ | async) || []"
-></cnjg-joke-list>
+@if(favouritesStoreService.favourites$ | async; as favourites){
+@if(favourites.length > 0){
+<cnjg-joke-list [jokes]="favourites"></cnjg-joke-list>
+}@else {
+<h1>🤡 No jokes to be found...</h1>
+} }@else {
+<h1>❌ Error loading favourites</h1>
+}

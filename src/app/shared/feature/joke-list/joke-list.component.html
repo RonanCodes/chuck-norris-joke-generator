@@ -1,5 +1,6 @@
 <ul>
-  <li *ngFor="let joke of jokes">
+  @for (joke of jokes; track joke){
+  <li>
     <button
       mat-icon-button
       title="Favourites"
@@ -13,4 +14,8 @@
     </button>
     {{ joke.value }}
   </li>
+
+  } @empty {
+  <h1>🤡 Loading jokes...</h1>
+  }
 </ul>
