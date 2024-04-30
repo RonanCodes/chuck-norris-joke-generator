@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient } from '@angular/common/http';
 import { JokeStoreService } from './shared/data/store/joke-store/joke-store.service';
 import { FavouritesStoreService } from './shared/data/store/favourites-store/favourites-store.service';
+import { IntervalRunningStoreService } from './shared/data/store/interval-running-store/interval-running-store.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,12 +17,18 @@ export const appConfig: ApplicationConfig = {
       provide: APP_INITIALIZER,
       useFactory: (
         jokeStoreService: JokeStoreService,
-        favouritesStoreService: FavouritesStoreService
+        favouritesStoreService: FavouritesStoreService,
+        intervalRunningStoreService: IntervalRunningStoreService
       ) => {
         jokeStoreService.initStore();
         favouritesStoreService.initStore();
+        intervalRunningStoreService.initStore();
       },
-      deps: [JokeStoreService, FavouritesStoreService],
+      deps: [
+        JokeStoreService,
+        FavouritesStoreService,
+        IntervalRunningStoreService,
+      ],
     },
   ],
 };

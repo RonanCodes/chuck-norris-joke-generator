@@ -8,33 +8,12 @@ import { Joke } from '../../rest/chuck-norris-joke-generator/chuck-norris-joke-g
   providedIn: 'root',
 })
 export class JokeStoreService {
-  private intervalMs = 5000;
   private _jokes$ = new BehaviorSubject<Joke[]>([]);
   public jokes$ = this._jokes$.asObservable();
 
-  private newJokeIntervalId: number | undefined;
-
-  private _isNewJokeIntervalRunning$ = new BehaviorSubject<boolean>(true);
-
-  public isNewJokeIntervalRunning$ =
-    this._isNewJokeIntervalRunning$.asObservable();
-
   constructor(
-    private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService,
-    private localStorageService: LocalStorageService
+    private chuckNorrisJokeGeneratorService: ChuckNorrisJokeGeneratorService
   ) {}
-
-  public toggleInterval(): void {
-    if (this._isNewJokeIntervalRunning$.value) {
-      this.cancelNewJokeTimer();
-      this._isNewJokeIntervalRunning$.next(false);
-    } else {
-      this.newJokeIntervalId = this.startNewJokeTimer();
-      this._isNewJokeIntervalRunning$.next(true);
-    }
-
-    this.persistIntervalStateToLocalStorage();
-  }
 
   public initStore(): void {
     const jokeRequests: Observable<Joke>[] = Array(10).fill(
@@ -47,47 +26,13 @@ export class JokeStoreService {
       // Add the joke to the list of jokes:
       this._jokes$.next([...this._jokes$.value, joke])
     );
-
-    this.loadIntervalStateFromLocalStorage();
   }
 
-  public cancelNewJokeTimer(): void {
-    window.clearInterval(this.newJokeIntervalId);
-    this.newJokeIntervalId = undefined;
-    this._isNewJokeIntervalRunning$.next(false);
-  }
-
-  // TODO: Move this to interval-running-store:
-  public startNewJokeTimer(): number {
-    this._isNewJokeIntervalRunning$.next(true);
-
-    // Every 5 seconds, add a new joke to the list of jokes:
-    return window.setInterval(() => {
-      this.chuckNorrisJokeGeneratorService
-        .getJoke()
-        .subscribe((joke) =>
-          this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)])
-        );
-    }, this.intervalMs);
-  }
-
-  private persistIntervalStateToLocalStorage(): void {
-    this.localStorageService.saveToLocalStorage(
-      'intervalState',
-      JSON.stringify(this._isNewJokeIntervalRunning$.value)
-    );
-  }
-
-  private loadIntervalStateFromLocalStorage(): void {
-    const intervalState =
-      this.localStorageService.getFromLocalStorage('intervalState');
-
-    if (intervalState) {
-      this._isNewJokeIntervalRunning$.next(JSON.parse(intervalState));
-    }
-
-    if (this._isNewJokeIntervalRunning$.value) {
-      this.newJokeIntervalId = this.startNewJokeTimer();
-    }
+  public triggerNewJoke(): void {
+    this.chuckNorrisJokeGeneratorService
+      .getJoke()
+      .subscribe((joke) =>
+        this._jokes$.next([joke, ...this._jokes$.value.splice(0, 9)])
+      );
   }
 }

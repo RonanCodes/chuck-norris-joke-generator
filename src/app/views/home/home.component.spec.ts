@@ -12,6 +12,7 @@ import { of } from 'rxjs';
 import { JokeStoreService } from '../../shared/data/store/joke-store/joke-store.service';
 import { RouterModule } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { IntervalRunningStoreService } from '../../shared/data/store/interval-running-store/interval-running-store.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -19,9 +20,15 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     const jokesStoreService = {
-      ...jasmine.createSpyObj('JokeStoreService', ['toggleInterval']),
-      isNewJokeIntervalRunning$: of(true),
+      ...jasmine.createSpyObj('JokeStoreService', ['']),
       jokes$: of([]),
+    };
+
+    const intervalRunningStoreService = {
+      ...jasmine.createSpyObj('IntervalRunningStoreService', [
+        'toggleInterval',
+      ]),
+      isNewJokeIntervalRunning$: of(true),
     };
 
     await TestBed.configureTestingModule({
@@ -39,6 +46,10 @@ describe('HomeComponent', () => {
         {
           provide: JokeStoreService,
           useValue: jokesStoreService,
+        },
+        {
+          provide: IntervalRunningStoreService,
+          useValue: intervalRunningStoreService,
         },
       ],
     }).compileComponents();

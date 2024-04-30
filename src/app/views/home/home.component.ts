@@ -15,6 +15,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { concat, delay, of, switchMap } from 'rxjs';
+import { IntervalRunningStoreService } from '../../shared/data/store/interval-running-store/interval-running-store.service';
 
 @Component({
   selector: 'cnjg-home',
@@ -51,7 +52,10 @@ import { concat, delay, of, switchMap } from 'rxjs';
 export class HomeComponent {
   public hourGlass = HourGlass;
 
-  constructor(public jokeStoreService: JokeStoreService) {}
+  constructor(
+    public jokeStoreService: JokeStoreService,
+    public intervalRunningStoreService: IntervalRunningStoreService
+  ) {}
 
   /**
    * Triggers the spin animation every time there is a new joke.

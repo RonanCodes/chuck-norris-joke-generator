@@ -18,13 +18,13 @@
 
   <button
     mat-icon-button
-    (click)="jokeStoreService.toggleInterval()"
+    (click)="intervalRunningStoreService.toggleInterval()"
     title="Toggle Interval"
     color="warn"
     [@spinAnimation]="isSpin$ | async"
   >
     <mat-icon>{{
-      (jokeStoreService.isNewJokeIntervalRunning$ | async)
+      (intervalRunningStoreService.isNewJokeIntervalRunning$ | async)
         ? hourGlass.Full
         : hourGlass.Empty
     }}</mat-icon>
