@@ -1,6 +1,6 @@
 # ChuckNorrisJokeGenerator
 
-Live GitHub Pages CD Deployement:  
+Live GitHub Pages CD Deployment:  
 https://ronancodes.github.io/chuck-norris-joke-generator/
 
 ## Future enhancements
