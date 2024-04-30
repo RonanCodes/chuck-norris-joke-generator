@@ -8,16 +8,30 @@ describe('JokeListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JokeListComponent]
-    })
-    .compileComponents();
-    
+      imports: [JokeListComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(JokeListComponent);
     component = fixture.componentInstance;
+
+    component.jokes = [
+      { value: 'Chuck Norris can divide by zero.', isFavourite: false },
+    ];
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('ul > li', () => {
+    it('should render joke', () => {
+      // Assert
+      const nativeElement = fixture.nativeElement as HTMLElement;
+      expect(nativeElement.querySelector('li')?.textContent).toContain(
+        'Chuck Norris can divide by zero.'
+      );
+    });
   });
 });

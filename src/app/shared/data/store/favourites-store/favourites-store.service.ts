@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from '../../util/local-storage/local-storage.service';
 import { Joke } from '../joke-store/joke-store.model';
+import { localStorageKey } from '../../util/local-storage/local-storage.constant';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavouritesStoreService {
-  // This should just be a filtered list on top of the joke store.
   private _favourites$ = new BehaviorSubject<Joke[]>([]);
 
   public favourites$ = this._favourites$.asObservable();
@@ -33,19 +33,13 @@ export class FavouritesStoreService {
   }
 
   public initStore(): void {
-    const favourites =
-      this.localStorageService.getFromLocalStorage('favourites');
+    const favourites = this.localStorageService.getFromLocalStorage(
+      localStorageKey.favourites
+    );
 
     if (favourites) {
       this._favourites$.next(JSON.parse(favourites));
     }
-  }
-
-  private persistToLocalStorage(): void {
-    this.localStorageService.saveToLocalStorage(
-      'favourites',
-      JSON.stringify(this._favourites$.value)
-    );
   }
 
   public toggleFavourite(joke: Joke): void {
@@ -54,6 +48,13 @@ export class FavouritesStoreService {
     } else {
       this.addFavourite(joke);
     }
+  }
+
+  private persistToLocalStorage(): void {
+    this.localStorageService.saveToLocalStorage(
+      localStorageKey.favourites,
+      JSON.stringify(this._favourites$.value)
+    );
   }
 
   private isFavourite(joke: Joke): boolean {

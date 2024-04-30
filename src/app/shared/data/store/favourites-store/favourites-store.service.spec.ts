@@ -13,4 +13,36 @@ describe('FavouritesStoreService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  describe('#favourites$', () => {
+    it('should return an empty array', () => {
+      // Arrange
+      // Act
+      // Assert
+    });
+  });
+
+  describe('#favourites$', () => {
+    it('should return an empty array', () => {
+      // Arrange
+      // Act
+      // Assert
+    });
+  });
+
+  describe('#favourites$', () => {
+    it('should return an empty array', () => {
+      // Arrange
+      // Act
+      // Assert
+    });
+  });
+
+  describe('#favourites$', () => {
+    it('should return an empty array', () => {
+      // Arrange
+      // Act
+      // Assert
+    });
+  });
 });

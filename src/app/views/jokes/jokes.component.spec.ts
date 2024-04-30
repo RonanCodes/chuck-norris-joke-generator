@@ -5,21 +5,26 @@ import { JokeStoreService } from '../../shared/data/store/joke-store/joke-store.
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { JokeListComponent } from '../../shared/feature/joke-list/joke-list.component';
+import { MockComponent } from 'ng-mocks';
+import { Joke } from '../../shared/data/store/joke-store/joke-store.model';
+import { By } from '@angular/platform-browser';
 
 describe('JokesComponent', () => {
   let component: JokesComponent;
   let fixture: ComponentFixture<JokesComponent>;
 
+  let jokes: Joke[];
+
   beforeEach(async () => {
+    jokes = [{ value: 'Chuck Norris can divide by zero.', isFavourite: false }];
+
     const jokesStoreService = {
       ...jasmine.createSpyObj('JokeStoreService', ['']),
-      jokes$: of([
-        { value: 'Chuck Norris can divide by zero.', isFavourite: false },
-      ]),
+      jokes$: of(jokes),
     };
 
     await TestBed.configureTestingModule({
-      imports: [JokesComponent, CommonModule, JokeListComponent],
+      imports: [JokesComponent, CommonModule, MockComponent(JokeListComponent)],
       providers: [
         {
           provide: JokeStoreService,
@@ -37,13 +42,14 @@ describe('JokesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // TODO: Move this to the joke-list component test.
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(JokesComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('li')?.textContent).toContain(
-      'Chuck Norris can divide by zero.'
-    );
+  describe('element: cnjg-joke-list [jokes]', () => {
+    it('should be passed a list of jokes', () => {
+      // Assert
+      const JokeListComponentInstance = fixture.debugElement
+        .query(By.directive(JokeListComponent))
+        .injector.get(JokeListComponent);
+
+      expect(JokeListComponentInstance.jokes).toBe(jokes);
+    });
   });
 });

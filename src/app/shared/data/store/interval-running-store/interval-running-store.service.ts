@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../../util/local-storage/local-storage.service';
 import { BehaviorSubject } from 'rxjs';
 import { JokeStoreService } from '../joke-store/joke-store.service';
+import { localStorageKey } from '../../util/local-storage/local-storage.constant';
 
-// TODO: This will encapsulate the interval logic that is currently inside the joke store service.
 @Injectable({
   providedIn: 'root',
 })
@@ -56,14 +56,15 @@ export class IntervalRunningStoreService {
 
   private persistIntervalStateToLocalStorage(): void {
     this.localStorageService.saveToLocalStorage(
-      'intervalState',
+      localStorageKey.interval,
       JSON.stringify(this._isNewJokeIntervalRunning$.value)
     );
   }
 
   private loadIntervalStateFromLocalStorage(): void {
-    const intervalState =
-      this.localStorageService.getFromLocalStorage('intervalState');
+    const intervalState = this.localStorageService.getFromLocalStorage(
+      localStorageKey.interval
+    );
 
     if (intervalState) {
       this._isNewJokeIntervalRunning$.next(JSON.parse(intervalState));

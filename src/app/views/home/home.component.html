@@ -22,6 +22,7 @@
     title="Toggle Interval"
     color="warn"
     [@spinAnimation]="isSpin$ | async"
+    id="toggle-interval-button"
   >
     <mat-icon>{{
       (intervalRunningStoreService.isNewJokeIntervalRunning$ | async)
