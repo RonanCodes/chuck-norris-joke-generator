@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JokesComponent } from './jokes.component';
-import { JokeStoreService } from '../joke-store/joke-store.service';
+import { JokeStoreService } from '../../shared/data/store/joke-store/joke-store.service';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { JokeListComponent } from '../joke-list/joke-list.component';
+import { JokeListComponent } from '../../shared/feature/joke-list/joke-list.component';
 
 describe('JokesComponent', () => {
   let component: JokesComponent;

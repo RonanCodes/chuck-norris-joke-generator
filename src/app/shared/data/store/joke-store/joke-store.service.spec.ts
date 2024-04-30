@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { JokeStoreService } from './joke-store.service';
-import { ChuckNorrisJokeGeneratorService } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.service';
+import { ChuckNorrisJokeGeneratorService } from '../../rest/chuck-norris-joke-generator/chuck-norris-joke-generator.service';
 
 describe('JokeStoreService', () => {
   let service: JokeStoreService;

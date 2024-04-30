@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { JokeListComponent } from '../joke-list/joke-list.component';
-import { FavouritesStoreService } from '../favourites-store/favourites-store.service';
+import { JokeListComponent } from '../../shared/feature/joke-list/joke-list.component';
+import { FavouritesStoreService } from '../../shared/data/store/favourites-store/favourites-store.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

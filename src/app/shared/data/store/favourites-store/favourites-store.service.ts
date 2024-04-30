@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LocalStorageService } from '../local-storage.service';
-import { Joke } from '../chuck-norris-joke-generator/chuck-norris-joke-generator.model';
+import { LocalStorageService } from '../../util/local-storage/local-storage.service';
+import { Joke } from '../../rest/chuck-norris-joke-generator/chuck-norris-joke-generator.model';
 
 @Injectable({
   providedIn: 'root',

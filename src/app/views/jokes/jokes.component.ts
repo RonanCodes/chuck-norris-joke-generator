@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { JokeStoreService } from '../joke-store/joke-store.service';
-import { JokeListComponent } from '../joke-list/joke-list.component';
+import { JokeStoreService } from '../../shared/data/store/joke-store/joke-store.service';
+import { JokeListComponent } from '../../shared/feature/joke-list/joke-list.component';
 
 @Component({
   selector: 'cnjg-jokes',

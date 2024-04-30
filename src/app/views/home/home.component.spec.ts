@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
-import { JokeStoreService } from '../joke-store/joke-store.service';
+import { JokeStoreService } from '../../shared/data/store/joke-store/joke-store.service';
 import { RouterModule } from '@angular/router';
 
 describe('HomeComponent', () => {
