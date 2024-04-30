@@ -6,7 +6,9 @@
       (click)="favouritesStoreService.toggleFavourite(joke)"
     >
       <mat-icon>{{
-        joke.isFavourite ? "favorite" : "favorite_border"
+        joke.isFavourite
+          ? favouriteIcon.Favourite
+          : favouriteIcon.FavouriteBorder
       }}</mat-icon>
     </button>
     {{ joke.value }}

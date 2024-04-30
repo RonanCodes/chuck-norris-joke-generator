@@ -4,7 +4,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { JokeStoreService } from '../../shared/data/store/joke-store/joke-store.service';
-import { HourGlass } from '../../shared/data/rest/chuck-norris-joke-generator/chuck-norris-joke-generator.model';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {
@@ -16,6 +15,7 @@ import {
 } from '@angular/animations';
 import { concat, delay, of, switchMap } from 'rxjs';
 import { IntervalRunningStoreService } from '../../shared/data/store/interval-running-store/interval-running-store.service';
+import { HourGlass } from '../../shared/model/material-icon.model';
 
 @Component({
   selector: 'cnjg-home',

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ChuckNorrisJoke, Joke } from './chuck-norris-joke-generator.model';
+import { ChuckNorrisJoke } from './chuck-norris-joke-generator.model';
 import { Observable, map } from 'rxjs';
 import { chuckNorrisApi } from './chuck-norris-joke-generator.constant';
+import { Joke } from '../../store/joke-store/joke-store.model';
 
 @Injectable({
   providedIn: 'root',
