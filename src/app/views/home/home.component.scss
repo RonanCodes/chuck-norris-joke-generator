@@ -26,3 +26,13 @@ mat-toolbar {
 .content {
   padding-top: 1px;
 }
+
+.header {
+  @media (max-width: 500px) {
+    font-size: 90%;
+  }
+}
+
+main {
+  height: 100%;
+}

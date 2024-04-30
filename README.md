@@ -8,7 +8,7 @@ https://ronancodes.github.io/chuck-norris-joke-generator/
 [] Use custom pipes and directives
 [] Add in more unit tests (using TestBed)
 [] Have the alternating colors swap whenever a new joke comes in
-[] Use breakpoints to make it look different on desktop
+[x] Use breakpoints to make it look different on desktop
 [] Add in a refresh button to the toolbar (icons should move into a burger menu when the width is too short)
 [] Hook it up to FireBase
 [] Have an option that is off by default to sync with firebase (via a toolbar icon)

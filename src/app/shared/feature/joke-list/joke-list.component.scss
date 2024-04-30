@@ -5,7 +5,19 @@
   height: 100%;
 
   ul {
-    width: 90%;
+    // Remove default margins on top and bottom:
+    margin: 0px;
+
+    width: 98%;
+
+    @media (min-width: 390px) {
+      width: 95%;
+    }
+
+    @media (min-width: 500px) {
+      width: 80%;
+    }
+
     height: 100%;
     justify-content: space-evenly;
 
@@ -31,7 +43,17 @@
 }
 
 li {
-  font-size: medium;
+  font-size: 0.75em;
+  line-height: normal;
+
+  @media (min-width: 390px) {
+    font-size: 1.2em;
+  }
+
+  @media (min-width: 500px) {
+    font-size: 1.5em;
+  }
+
   display: flex;
   align-items: center;
 }
