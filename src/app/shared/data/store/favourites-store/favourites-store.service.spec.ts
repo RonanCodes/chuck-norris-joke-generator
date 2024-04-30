@@ -105,12 +105,11 @@ describe('FavouritesStoreService', () => {
   });
 
   describe('#toggleFavourite()', () => {
-    it('should update the #isFavourite property', (done) => {
+    it('should remove the joke', (done) => {
       // Act
       service.toggleFavourite(originalJoke);
 
       service.favourites$.subscribe((favourites) => {
-        console.log(favourites);
         expect(favourites.length).toBe(0);
         done();
       });
@@ -120,6 +119,23 @@ describe('FavouritesStoreService', () => {
       expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
         localStorageKey.favourites,
         JSON.stringify([])
+      );
+    });
+
+    it('should add the joke', (done) => {
+      // Act
+      service.toggleFavourite(newJoke);
+
+      service.favourites$.subscribe((favourites) => {
+        expect(favourites.length).toBe(2);
+        done();
+      });
+
+      // Assert
+      expect(originalJoke.isFavourite).toBe(true);
+      expect(localStorageService.saveToLocalStorage).toHaveBeenCalledWith(
+        localStorageKey.favourites,
+        JSON.stringify([originalJoke, newJoke])
       );
     });
   });

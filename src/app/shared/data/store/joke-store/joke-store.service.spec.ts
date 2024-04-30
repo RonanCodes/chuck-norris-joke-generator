@@ -54,11 +54,25 @@ describe('JokeStoreService', () => {
     });
   });
 
-  // describe('#triggerNewJoke()', () => {
-  //   it('should call the Chuck norris API 10 times, and emit on the store', () => {
-  //     // Arrange
-  //     // Act
-  //     // Assert
-  //   });
-  // });
+  describe('#triggerNewJoke()', () => {
+    it('should call the Chuck norris API 10 times, and emit on the store', (done) => {
+      // Arrange
+      const newJoke = {
+        value: `Chuck Norris can lick his elbows.`,
+        isFavourite: false,
+      };
+      chuckNorrisJokeGeneratorService.getJoke.and.returnValue(of(newJoke));
+
+      // Act
+      service.triggerNewJoke();
+
+      service.jokes$.subscribe((jokes) => {
+        expect(jokes[0]).toBe(newJoke);
+        done();
+      });
+
+      // Assert
+      expect(chuckNorrisJokeGeneratorService.getJoke).toHaveBeenCalledWith();
+    });
+  });
 });
