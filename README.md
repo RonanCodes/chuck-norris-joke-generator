@@ -30,6 +30,8 @@ https://ronancodes.github.io/chuck-norris-joke-generator/
 - [] Don't use TestBed in services as it's not needed and slows down test runs
 - [] enums compile to a lot of JS code, consider just exporting const's, or a class with const's in it
 - [] Use RxJS instead of SetInterval for better readability and simpler code
+- [] Some Cypress e2e tests
+- [] Swap Jasmine/Karma for Jest
 
 ## Future Enhancements
 
