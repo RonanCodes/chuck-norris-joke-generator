@@ -16,10 +16,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Dependencies
-        uses: chill-viking/npm-ci@latest
-        with:
-          working_directory: './npm-root-folder/'
+      - run: npm ci
 
       - name: Lint
         run: npm run lint
@@ -27,19 +24,19 @@ jobs:
       - name: Test
         run: npm run ci:test
 
-      # - name: Automated Version Bump
-      #   uses: phips28/gh-action-bump-version@v11.0.4
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Automated Version Bump
+        uses: phips28/gh-action-bump-version@v11.0.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Build
         run: npm run build:prod
 
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: dist
-      #     path: dist/chuck-norris-joke-generator/browser
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist/chuck-norris-joke-generator/browser
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.5
