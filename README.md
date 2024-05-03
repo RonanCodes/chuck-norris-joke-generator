@@ -22,17 +22,26 @@ https://ronancodes.github.io/chuck-norris-joke-generator/
   - JamesIves/github-pages-deploy-action@4.1.5
   - phips28/gh-action-bump-version@v11.0.4
 
+## Code Reviews Tips to Implement
+
+- [] Put colors in a common stylesheet, and reference using CSS4 root variables
+- [] Have a theme switcher to allow switching to light mode
+- [] Cache the npm ci command in GH Actions
+- [] Don't use TestBed in services as it's not needed and slows down test runs
+- [] enums compile to a lot of JS code, consider just exporting const's, or a class with const's in it
+- [] Use RxJS instead of SetInterval for better readability and simpler code
+
 ## Future Enhancements
 
-- Simplifying logic by moving from RxJS to Signals (where applicable)
-- Custom directives
-- Custom pipes
-- Moving more logic from the template to the class
-- Moving some logic from components to utility classes
-- Integrating FireBase DB (with icon to enable or disable this syncing)
-- Refresh icon
-- Media breakpoint for a burger menu if the toolbar gets too crowded
-- More CSS styling (check out this example which has Pokemon font: https://th3n3rd.medium.com/consuming-chuck-norris-api-from-reactjs-f6b395c80a8f)
+- [] Simplifying logic by moving from RxJS to Signals (where applicable)
+- [] Custom directives
+- [] Custom pipes
+- [] Moving more logic from the template to the class
+- [] Moving some logic from components to utility classes
+- [] Integrating FireBase DB (with icon to enable or disable this syncing)
+- [] Refresh icon
+- [] Media breakpoint for a burger menu if the toolbar gets too crowded
+- [] More CSS styling (check out this example which has Pokemon font: https://th3n3rd.medium.com/consuming-chuck-norris-api-from-reactjs-f6b395c80a8f)
 
 # NG Default
 
