@@ -40,7 +40,7 @@ describe('IntervalRunningStoreService', () => {
   });
 
   describe('#initStore()', () => {
-    it('should emit the local stoarge pref for if the interval should run', (done) => {
+    it('should emit the local storage pref for if the interval should run', (done) => {
       // Arrange
       localStorageService.getFromLocalStorage.and.returnValue('false');
 
